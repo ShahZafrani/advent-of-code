@@ -13,10 +13,10 @@ def getProductOfNumsThatMakeSum(sumNum, lines):
                     c = int(lines[k])
                     sum1 = a + b + c
                     if  sum1 == sumNum:
-                        if i != j:
-                            print("{} + {} + {} = {}".format(a, b, c, sumNum))
-                            print("{} * {} * {} = {}".format(a,b,c, a*b*c))
-                            notFound=False
+                        print("{} + {} + {} = {}".format(a, b, c, sumNum))
+                        print("{} * {} * {} = {}".format(a,b,c, a*b*c))
+                        notFound=False
+                        return
 
 if __name__=="__main__":
     print("day 1: expense reports")
