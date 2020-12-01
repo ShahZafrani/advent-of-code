@@ -4,19 +4,17 @@ def openFile(name):
 
 def getProductOfNumsThatMakeSum(sumNum, lines):
     notFound = True
-    while(notFound):
-        for i in range(len(lines)):
-            for j in range(len(lines)):
-                for k in range(len(lines)):
-                    a = int(lines[i])
-                    b = int(lines[j])
-                    c = int(lines[k])
-                    sum1 = a + b + c
-                    if  sum1 == sumNum:
-                        print("{} + {} + {} = {}".format(a, b, c, sumNum))
-                        print("{} * {} * {} = {}".format(a,b,c, a*b*c))
-                        notFound=False
-                        return
+    for i in range(len(lines)):
+        for j in range(len(lines)):
+            for k in range(len(lines)):
+                a = int(lines[i])
+                b = int(lines[j])
+                c = int(lines[k])
+                sum1 = a + b + c
+                if  sum1 == sumNum:
+                    print("{} + {} + {} = {}".format(a, b, c, sumNum))
+                    print("{} * {} * {} = {}".format(a,b,c, a*b*c))
+                    return
 
 if __name__=="__main__":
     print("day 1: expense reports")
