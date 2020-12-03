@@ -23,7 +23,12 @@ def getNextLocation(down, right, ypos, xpos, grid, gridWidth):
 
 def countTreesInPath(count, down, right, ypos, xpos, grid, gridHeight, gridWidth):
     if isDebug == True:
-        rowstr = "" + grid[ypos]
+        rowstr = ""
+        for s in grid[ypos]:
+            if (s == True):
+                rowstr += "#"
+            else:
+                rowstr += "."
         if rowstr[xpos] == "#":
             print(rowstr[:xpos] + "X" + rowstr[xpos + 1:] + "\t y={}, x={}".format(ypos, xpos))
         else:
