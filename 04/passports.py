@@ -21,6 +21,8 @@ if __name__=="__main__":
     print("day 4: passports")
     # lines = openFile("testInput.txt", "\n")
     lines = openFile("input.txt", "\n\n")
+    pstring1 = "^(?=.*ecl)(?=.*eyr)(?=.*pid)(?=.*hcl)(?=.*byr)(?=.*hgt)(?=.*iyr).+$"
+    pattern1 = re.compile(pstring1)
     eyeColor = "(?=.*ecl:(brn|gry|blu|amb|grn|hzl|oth))"
     expYear = "(?=.*eyr:((202[0-9])|(2030)))"
     passportId = "(?=.*pid:\d{9}\s)"
@@ -28,11 +30,10 @@ if __name__=="__main__":
     birthYear = "(?=.*byr:((19[2-9][0-9])|(200[0-2])))"
     issueYear = "(?=.*iyr:((201[0-9])|(2020)))"
     height = "(?=.*hgt:((1[5-8][0-9]cm)|(19[0-3]cm)|(59in)|(6[0-9]in)|(7[0-6]in)))"
-    pstring = "^" + eyeColor + expYear + passportId + hairColor + birthYear + issueYear + height + ".+$"
-    pattern = re.compile(pstring)
-    print(pstring)
-    remap = map(lambda x : validatePassport(x, pattern), lines)
-    print(sum(remap))
+    pstring2 = "^" + eyeColor + expYear + passportId + hairColor + birthYear + issueYear + height + ".+$"
+    pattern2 = re.compile(pstring2)
+    print("using pattern:\n{}\n for part 1\ncount: {}".format(pstring1, sum(map(lambda x : validatePassport(x, pattern1), lines))))
+    print("using pattern:\n{}\n for part 2\ncount: {}".format(pstring2, sum(map(lambda x : validatePassport(x, pattern2), lines))))
 
     
 
