@@ -58,10 +58,10 @@ def checkVictory(numDict, boards, number, yetToWin):
 
 if __name__=="__main__":
     print("day 4: bingo")
-    # test = openFile("test.txt") 
+    test = openFile("test.txt") 
     
-    input = openFile("input.txt") 
-    numSequence, boards, numDict = setupBingoBoard(input)
+    # input = openFile("input.txt") 
+    numSequence, boards, numDict = setupBingoBoard(test)
     print(boards)
 
     winningBoard = 0
