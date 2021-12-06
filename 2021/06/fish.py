@@ -8,7 +8,7 @@ def openFile(name):
 
 if __name__=="__main__":
     print("day 6: something's fishy")
-    # input = openFile("test.txt") # 5
+    # input = openFile("test.txt") # 5934
     input = openFile("input.txt") # 
     numDays = 256
     startingFish = [int(f) for f in input[0].split(",")]
@@ -18,7 +18,6 @@ if __name__=="__main__":
     print(startingFish)
     for fish in startingFish:
         fishDict[fish] += 1
-    print(fishDict)
     for day in range(numDays):
         for i in range(0, 10):
             val = fishDict[i]
@@ -27,6 +26,5 @@ if __name__=="__main__":
         fishDict[6] += newbirths
         fishDict[8] += newbirths
         fishDict[-1] = 0
-        print(fishDict)
 
     print(sum(fishDict.values()))

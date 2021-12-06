@@ -32,18 +32,23 @@ def buildMap(input, partTwo=False):
             # if (lineSegment[1] - lineSegment[3]) / (lineSegment[0] - lineSegment[2]) < 0:
             #     negativeSlope = True
             #     print("NEGATIVE SLOPE: {}".format(lineSegment))
-            xrange = range(lineSegment[0], lineSegment[2])
-            yrange = range(lineSegment[1], lineSegment[3])
+            xrange = []
+            yrange = []
             if lineSegment[0] > lineSegment[2]:
-                xrange.append(int(lineSegment[2] -1))
+                xrange = range(lineSegment[2], lineSegment[0])
+                xrange.append(lineSegment[0])
+                xrange.reverse()
             else: 
-                xrange.append(int(lineSegment[2] +1))
+                xrange = range(lineSegment[0], lineSegment[2])
+                xrange.append(lineSegment[2])
             if lineSegment[1] > lineSegment[3]:
-                yrange.append(int(lineSegment[3] -1))
+                yrange = range(lineSegment[3], lineSegment[1])
+                yrange.append(lineSegment[1])
+                yrange.reverse()
             else: 
-                yrange.append(int(lineSegment[3] +1))
-            for x in xrange:
-                for y in yrange:
+                yrange = range(lineSegment[1], lineSegment[3])
+                yrange.append(lineSegment[3])
+            for x, y in zip(xrange, yrange):
                     key = "{},{}".format(x, y)
                     if (key in graphMap):
                         graphMap[key] = True
@@ -52,9 +57,9 @@ def buildMap(input, partTwo=False):
     return graphMap
 if __name__=="__main__":
     print("day 5: thermal vents")
-    test = openFile("test.txt") # 5, 12 for part 2
-    # input = openFile("input.txt") # 
-    graphMap = buildMap(test, True)
+    # input = openFile("test.txt") # 5, 12 for part 2
+    input = openFile("input.txt") # 
+    graphMap = buildMap(input, True)
     for key in graphMap.keys():
         if (graphMap[key] == True):
             print(key)
