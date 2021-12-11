@@ -84,6 +84,6 @@ if __name__ == "__main__":
         if fix != []:
             fixes.append(fix)
     testScores = sorted([scoreFix(fix) for fix in testFixes])
-    print("part 2 test should be 288957 == {}".format(testScores[len(testScores)/2]))
+    print("part 2 test should be 288957 == {}".format(testScores[int(len(testScores)/2)]))
     scores = sorted([scoreFix(fix) for fix in fixes])
-    print("part 2 answer \n \t {}".format(scores[len(scores)/2]))
+    print("part 2 answer \n \t {}".format(scores[int(len(scores)/2)]))
