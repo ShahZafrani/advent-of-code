@@ -3,33 +3,19 @@ from lib.utils import openFile
 from typing import List
 
 def getProductCode(input):
-    grid = input[0]
-    folds = input[1]
-    for instruction in folds:
+    grid, folds = input
+    for idx, instruction in enumerate(folds):
         grid = fold(grid, *instruction)
-
-    printGrid(grid)
-    return sum(map(lambda x : sum(x), grid))
+        if not idx:
+            print(f"part 1: {sum(map(lambda x : sum(x), grid))}") # for part 1
+    printGrid(grid) # for part 2
 
 
 def fold(grid, axis, foldLine):
-    
-    outputGrid = []
     if axis == "x":
-        for line in grid:
-            lineA = line[0:foldLine]
-            lineB = line[(foldLine + 1):]
-            lineB.reverse()
-            newLine = [a or b for (a, b) in zip(lineA, lineB)]
-            outputGrid.append(newLine)
+        return [[a or b for (a, b) in zip(line[0:foldLine], reversed(line[(foldLine + 1):]))] for line in grid]
     elif axis == "y":
-        gridA = grid[0: foldLine]
-        gridB = grid[(foldLine + 1):]
-        gridB.reverse()
-        for lineA, lineB in zip(gridA, gridB):
-            newLine = [a or b for (a, b) in zip(lineA, lineB)]
-            outputGrid.append(newLine)
-    return outputGrid
+        return [[a or b for (a, b) in zip(lineA, lineB)] for lineA, lineB in zip(grid[0: foldLine], reversed(grid[(foldLine + 1):]))]
 
 def createDotGrid(rawInput : List[str]): # 0 represents no dot, 1 represents dot
     grid = []
@@ -51,26 +37,20 @@ def createDotGrid(rawInput : List[str]): # 0 represents no dot, 1 represents dot
     maxX = max([loc[1] for loc in initialDots])
     maxY = max([loc[0] for loc in initialDots])
 
-    for i in range(maxY + 1):
-        grid.append([0 for x in range(maxX + 1)])
-
+    grid = [[0 for _ in range(maxX + 1)] for _ in range(maxY + 1)]
     for loc in initialDots:
         grid[loc[0]][loc[1]] = 1
-
     return grid, folds
 
 def printGrid(grid):
-    print(['-' for i in range(len(grid[0]))])
+    print("\nprinting grid\n")
     for line in grid:
-        print("\t{}".format(line))
+        print(f"\t{line}")
 
 if __name__ == "__main__":
     testInput = createDotGrid(openFile("13/test.txt"))
     input = createDotGrid(openFile("13/input.txt"))
-
     twelve = Solver(testInput, input)
-
-
     twelve.solve(getProductCode, 17)
     
 
