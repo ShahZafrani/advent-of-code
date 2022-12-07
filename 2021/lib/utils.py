@@ -16,6 +16,9 @@ def loadGrid(file):
         grid.append(row)
     return grid
 
+def printGrid(grid):
+    print("\nprinting grid\n")
+    [print(f"\t{line}") for line in grid]
 
 
 # returns a list of (y, x) tuples that border the provided point
