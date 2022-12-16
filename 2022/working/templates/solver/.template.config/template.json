@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Shah Zafrani",
+    "classifications": [ "Common", "Console", "Advent"],
+    "identity": "AdventTemplates.Solver",
+    "name": "Advent templates: Solver Project",
+    "shortName": "adventsolver",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }
