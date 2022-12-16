@@ -14,3 +14,35 @@ The /test and /working folders are used for the extensions.
 
 -- Giving up on interface for now since I have no wifi to look things up. 
 
+Had trouble with Part 1 where my answer was too low but my test was passing. The undetected overlap was "3-76,3-3" and the that failed to pick it up was:
+```
+    public int Solve(string fileName) {
+        int fullOverlap = 0;
+        foreach (string line in System.IO.File.ReadLines(@fileName))
+        {
+            string[] elfAssignments = line.Split(',');
+            string[] elfOne = elfAssignments[0].Split('-');
+            string[] elfTwo = elfAssignments[1].Split('-');
+
+            //3-76,3-3
+            // Console.WriteLine(line);
+            if (Int32.Parse(elfOne[0]) >= Int32.Parse(elfTwo[0])) {
+                if (Int32.Parse(elfOne[1]) <= Int32.Parse(elfTwo[1])) {
+                    fullOverlap +=1;
+                    // Console.WriteLine("Overlap ^^^");
+                }
+            } else if (Int32.Parse(elfOne[0]) <= Int32.Parse(elfTwo[0])) {
+                if (Int32.Parse(elfOne[1]) >= Int32.Parse(elfTwo[1])) {
+                    fullOverlap +=1;
+                    // Console.WriteLine("Overlap ^^^");
+                }
+            }
+        }  
+        return fullOverlap;
+    }
+```
+
+Because of the "else if" clause my logic was able to detect an overlap for "6-6,4-6" but not "3-76,3-3". I added the new input to my test case and verified the bug was fixed before checking if it was correct. Currently I'm on a plane in taxi waiting to take off so I had to submit the answer via my cell phone to see if it was correct. 
+
+
+

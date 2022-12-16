@@ -11,10 +11,34 @@ public class Solver {
     }
     public void Run() {
         Console.WriteLine("Solving day {0}", this.day);
-        Console.WriteLine("Test Output: {0}, expected: {1}", this.expectedTestOutput, Solve(this.testFileName));
+        Console.WriteLine("Test Output: {0}, expected: {1}", Solve(this.testFileName), this.expectedTestOutput);
         Console.WriteLine("\nSovled output: {0}", Solve(this.inputFileName));
     }
     public int Solve(string fileName) {
-        return 0;
+        int fullOverlap = 0;
+        foreach (string line in System.IO.File.ReadLines(@fileName))
+        {
+            int overlap = 0;
+            string[] elfAssignments = line.Split(',');
+            string[] elfOne = elfAssignments[0].Split('-');
+            string[] elfTwo = elfAssignments[1].Split('-');
+
+            //3-76,3-3
+            // Console.WriteLine(line);
+            if (Int32.Parse(elfOne[0]) >= Int32.Parse(elfTwo[0])) {
+                if (Int32.Parse(elfOne[1]) <= Int32.Parse(elfTwo[1])) {
+                    overlap = 1;
+                    // Console.WriteLine("Overlap ^^^");
+                }
+            }
+            if (Int32.Parse(elfOne[0]) <= Int32.Parse(elfTwo[0])) {
+                if (Int32.Parse(elfOne[1]) >= Int32.Parse(elfTwo[1])) {
+                    overlap = 1;
+                    // Console.WriteLine("Overlap ^^^");
+                }
+            }
+            fullOverlap += overlap;
+        }  
+        return fullOverlap;
     }
 }
